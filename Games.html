@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault | Your Gaming Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C63FF',
+                        secondary: '#FF6584',
+                        dark: '#1A1A2E',
+                        light: '#F1F1F1',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F0F1A;
+            color: #F1F1F1;
+            scroll-behavior: smooth;
+        }
+        
+        .game-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(108, 99, 255, 0.2), 0 10px 10px -5px rgba(108, 99, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6C63FF, #FF6584);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(108, 99, 255, 0.2), transparent 70%),
+                        radial-gradient(circle at bottom left, rgba(255, 101, 132, 0.2), transparent 70%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .animated-bg {
+            background: linear-gradient(-45deg, #6C63FF, #FF6584, #6C63FF);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .glow {
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #6C63FF, #FF6584);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-3">
+                    <i class="fas fa-gamepad text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold">Game<span class="gradient-text">Vault</span></span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link active text-white hover:text-primary transition-colors">Home</a>
+                <a href="#games" class="nav-link text-white hover:text-primary transition-colors">Games</a>
+                <a href="#features" class="nav-link text-white hover:text-primary transition-colors">Features</a>
+                <a href="#about" class="nav-link text-white hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="nav-link text-white hover:text-primary transition-colors">Contact</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 px-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-primary transition-colors">Home</a>
+                <a href="#games" class="text-white hover:text-primary transition-colors">Games</a>
+                <a href="#features" class="text-white hover:text-primary transition-colors">Features</a>
+                <a href="#about" class="text-white hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="text-white hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Showcase Your <span class="gradient-text">Gaming</span> Masterpieces</h1>
+                    <p class="text-lg text-gray-300 mb-8">Present your games in a stunning portfolio that captures the essence of your creative vision and gaming innovation.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#games" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium hover:opacity-90 transition-opacity">Explore Games</a>
+                        <a href="#contact" class="px-8 py-3 rounded-full bg-transparent border border-primary text-white font-medium hover:bg-primary/10 transition-all">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-primary/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                        <svg class="w-full max-w-md" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z" fill="#6C63FF"/>
+                            <path d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z" fill="#6C63FF" opacity="0.2"/>
+                            <g>
+                                <path d="M215,300c0,0,20-40,15-85s-25-75-25-75s30,10,35,55s-15,85-15,85" fill="#FF6584"/>
+                                <path d="M250,300c0,0,20-40,15-85s-25-75-25-75s30,10,35,55s-15,85-15,85" fill="#FF6584"/>
+                                <path d="M215,300c0,0-20-40-15-85s25-75,25-75s-30,10-35,55s15,85,15,85" fill="#FF6584"/>
+                            </g>
+                            <g>
+                                <rect x="180" y="150" width="140" height="90" rx="10" fill="#333" />
+                                <rect x="190" y="160" width="120" height="70" rx="5" fill="#111" />
+                                <circle cx="250" cy="270" r="15" fill="#333" />
+                                <rect x="235" y="270" width="30" height="20" fill="#333" />
+                                <circle cx="210" cy="195" r="10" fill="#6C63FF" />
+                                <circle cx="290" cy="195" r="10" fill="#FF6584" />
+                                <rect x="230" y="190" width="40" height="10" rx="5" fill="#FFF" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games Section -->
+    <section id="games" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Featured <span class="gradient-text">Games</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Discover our collection of innovative and engaging games that push the boundaries of creativity and technology.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Game Card 1 -->
+                <div class="game-card glass-effect rounded-xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21,18H15V15H13V18H3V6H21M21,4H3C1.9,4 1,4.9 1,6V18C1,19.1 1.9,20 3,20H21C22.1,20 23,19.1 23,18V6C23,4.9 22.1,4 21,4M6,12H8V14H10V12H12V10H10V8H8V10H6V12Z" />
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Adventure
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Cosmic Odyssey</h3>
+                        <p class="text-gray-400 mb-4">An epic space adventure where players explore uncharted galaxies and encounter alien civilizations.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star-half-alt text-yellow-400"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-400">4.5</span>
+                            </div>
+                            <button class="px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-primary/90 transition-colors">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Card 2 -->
+                <div class="game-card glass-effect rounded-xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-red-600 to-orange-500 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.5,14.5L17,19H7L11.5,14.5M6,7L14,12.5L22,7V19H23V7L14,1L5,7V19H6V7M16,8V10H14V8H16M13,8V10H11V8H13M10,8V10H8V8H10Z" />
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-secondary/90 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Strategy
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Kingdom Defenders</h3>
+                        <p class="text-gray-400 mb-4">Build your fortress, train your army, and defend your kingdom against waves of mythical creatures.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-400">5.0</span>
+                            </div>
+                            <button class="px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-primary/90 transition-colors">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Card 3 -->
+                <div class="game-card glass-effect rounded-xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-green-600 to-teal-500 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.5,13.5H16.5V10.5H14.5M18,14C18,14.6 17.6,15 17,15H16.25V16.5H14.75V15H14C13.4,15 13,14.6 13,14V10C13,9.4 13.4,9 14,9H17C17.6,9 18,9.4 18,10M11,15H9.5V13H7.5V15H6V9H7.5V11.5H9.5V9H11M19,4H5C3.89,4 3,4.89 3,6V18C3,19.1 3.9,20 5,20H19C20.1,20 21,19.1 21,18V6C21,4.89 20.1,4 19,4Z" />
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-green-600/90 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Puzzle
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mind Maze</h3>
+                        <p class="text-gray-400 mb-4">Challenge your brain with intricate puzzles and mind-bending challenges in this award-winning game.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="far fa-star text-yellow-400"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-400">4.0</span>
+                            </div>
+                            <button class="px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-primary/90 transition-colors">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="load-more" class="px-8 py-3 rounded-full glass-effect text-white font-medium hover:glow transition-all">
+                    Load More Games
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-dark/50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Game <span class="gradient-text">Features</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Our games are built with cutting-edge technology and designed with player experience in mind.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-vr-cardboard text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Immersive Experience</h3>
+                    <p class="text-gray-400">Get lost in stunning visuals and captivating storylines that transport you to new worlds.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multiplayer Support</h3>
+                    <p class="text-gray-400">Connect with friends and players worldwide for collaborative or competitive gameplay.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cross-Platform</h3>
+                    <p class="text-gray-400">Play seamlessly across multiple devices with progress syncing and consistent experience.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-trophy text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Achievements & Rewards</h3>
+                    <p class="text-gray-400">Earn badges, unlock special content, and climb leaderboards as you progress.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-yellow-500/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Customization</h3>
+                    <p class="text-gray-400">Personalize characters, environments, and gameplay settings to match your preferences.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud-download-alt text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Regular Updates</h3>
+                    <p class="text-gray-400">Enjoy fresh content, new features, and gameplay improvements with frequent updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full bg-primary/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                        <svg class="w-full max-w-md mx-auto" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M256,128.7c-70.7,0-128,57.3-128,128s57.3,128,128,128s128-57.3,128-128S326.7,128.7,256,128.7z" fill="#6C63FF" opacity="0.2"/>
+                            <path d="M398.7,170.7h-64v-64c0-5.9-4.8-10.7-10.7-10.7H256c-5.9,0-10.7,4.8-10.7,10.7v64h-64c-5.9,0-10.7,4.8-10.7,10.7V256 c0,5.9,4.8,10.7,10.7,10.7h64v64c0,5.9,4.8,10.7,10.7,10.7h68c5.9,0,10.7-4.8,10.7-10.7v-64h64c5.9,0,10.7-4.8,10.7-10.7v-74.7 C409.3,175.5,404.6,170.7,398.7,170.7z" fill="#6C63FF"/>
+                            <g>
+                                <circle cx="150" cy="150" r="20" fill="#FF6584"/>
+                                <circle cx="350" cy="350" r="20" fill="#FF6584"/>
+                                <circle cx="150" cy="350" r="20" fill="#FF6584"/>
+                                <circle cx="350" cy="150" r="20" fill="#FF6584"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">About <span class="gradient-text">GameVault</span></h2>
+                    <p class="text-gray-300 mb-6">GameVault is a premier platform for showcasing innovative and engaging games. We are passionate about creating immersive gaming experiences that push the boundaries of creativity and technology.</p>
+                    <p class="text-gray-300 mb-6">Our team of talented developers, designers, and storytellers work together to craft games that captivate players and provide hours of entertainment. We believe in the power of games to inspire, challenge, and connect people.</p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">15+</div>
+                            <p class="text-gray-400">Games Released</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">5M+</div>
+                            <p class="text-gray-400">Active Players</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">12+</div>
+                            <p class="text-gray-400">Industry Awards</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">8+</div>
+                            <p class="text-gray-400">Years Experience</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium hover:opacity-90 transition-opacity inline-block">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-dark/50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Player <span class="gradient-text">Testimonials</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">See what our community has to say about our games and their experiences.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white font-bold text-lg">
+                            JD
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">John Doe</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Cosmic Odyssey is one of the most immersive games I've ever played. The graphics are stunning and the storyline keeps me coming back for more!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-red-500 flex items-center justify-center text-white font-bold text-lg">
+                            AS
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Alice Smith</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Kingdom Defenders has the perfect balance of strategy and action. I love how each game feels different with the variety of enemies and challenges."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="glass-effect p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                            RJ
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Robert Johnson</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="far fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Mind Maze has become my daily brain exercise. The puzzles are challenging without being frustrating, and the progression system keeps me motivated."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Get in <span class="gradient-text">Touch</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Have questions or want to collaborate? Reach out to us and we'll get back to you as soon as possible.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-effect p-8 rounded-xl">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-dark/50 border border-gray-700 text-white focus:outline-none focus:border-primary transition-colors" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-dark/50 border border-gray-700 text-white focus:outline-none focus:border-primary transition-colors" placeholder="Your email">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg bg-dark/50 border border-gray-700 text-white focus:outline-none focus:border-primary transition-colors" placeholder="Subject">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-dark/50 border border-gray-700 text-white focus:outline-none focus:border-primary transition-colors" placeholder="Your message"></textarea>
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium hover:opacity-90 transition-opacity">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <!-- Contact Info 1 -->
+                    <div class="glass-effect p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-primary"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Email</h4>
+                        <p class="text-gray-400">contact@gamevault.com</p>
+                    </div>
+                    
+                    <!-- Contact Info 2 -->
+                    <div class="glass-effect p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone-alt text-secondary"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Phone</h4>
+                        <p class="text-gray-400">+1 (555) 123-4567</p>
+                    </div>
+                    
+                    <!-- Contact Info 3 -->
+                    <div class="glass-effect p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-green-500"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Location</h4>
+                        <p class="text-gray-400">San Francisco, CA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 animated-bg">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto glass-effect p-8 md:p-12 rounded-xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+                    <p class="text-gray-300">Subscribe to our newsletter for the latest game releases, updates, and exclusive offers.</p>
+                </div>
+                <form id="newsletter-form" class="flex flex-col md:flex-row gap-4">
+                    <input type="email" placeholder="Enter your email" class="flex-grow px-4 py-3 rounded-lg bg-dark/50 border border-gray-700 text-white focus:outline-none focus:border-primary transition-colors">
+                    <button type="submit" class="px-6 py-3 rounded-lg bg-white text-dark font-medium hover:bg-gray-100 transition-colors">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark/80 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-3">
+                            <i class="fas fa-gamepad text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Game<span class="gradient-text">Vault</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Showcasing innovative and engaging games that push the boundaries of creativity and technology.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 transition-colors">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#games" class="text-gray-400 hover:text-white transition-colors">Games</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Games</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cosmic Odyssey</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kingdom Defenders</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mind Maze</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Speed Racers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pixel Warriors</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2023 GameVault. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Form Submission (Demo)
+        const contactForm = document.getElementById('contact-form');
+        const newsletterForm = document.getElementById('newsletter-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form.');
+            contactForm.reset();
+        });
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing! This is a demo form.');
+            newsletterForm.reset();
+        });
+        
+        // Load More Games Button
+        const loadMoreBtn = document.getElementById('load-more');
+        
+        loadMoreBtn.addEventListener('click', () => {
+            alert('More games would load here in a real implementation.');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'942abb290333b29f',t:'MTc0NzczMjU0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
